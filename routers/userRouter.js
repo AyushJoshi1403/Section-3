@@ -3,6 +3,7 @@ const Model = require('../models/userModel');
 
 const router = express.Router();
 
+// add
 router.post('/add', (req, res) => {
     console.log(req.body);
 
