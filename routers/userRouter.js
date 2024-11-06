@@ -28,19 +28,48 @@ router.get('/getall', (req, res) => {
     });
 });
 
+router.get('/getbycity/:city', (req, res) => {
+    Model.find({ city: req.params.city })
+    .then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 // getbyid
-router.get('/getbyid', (req, res) => {
-    res.send('get by id response from user')
+router.get('/getbyid/:id', (req, res) => {
+    Model.findById(req.params.id)
+    .then((result) => {
+        res.status(200).json(result)
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 //delete
-router.get('/delete', (req, res) => {
-    res.send('delete response from user')
+router.delete('/delete/:id', (req, res) => {
+    Model.findByIdAndDelete(req.params.id)
+    .then((result) => {
+        res.status(200).json(result)
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 //update
-router.get('/update', (req, res) => {
-    res.send('update response from user')
+router.put('/update/:id', (req, res) => {
+    
+    Model.findByIdAndUpdate(req.params.id, req.body, {new : true})
+    .then((result) => {
+        res.status(200).json(result)
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports = router;
