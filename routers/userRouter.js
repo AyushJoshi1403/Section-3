@@ -2,6 +2,7 @@ const express = require('express');
 const Model = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const verifyToken = require('../middlewares/verifyToken');
+
 require('dotenv').config();
 
 const router = express.Router();
@@ -100,7 +101,6 @@ router.post('/authenticate', (req, res) => {
                         } else {
                             res.status(200).json({ token });
                         }
-
                     }
                 )
 
